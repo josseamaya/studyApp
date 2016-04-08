@@ -1,0 +1,107 @@
+create database study;
+use study;
+
+create table maestro(
+	cod_maestro varchar(10) not null,
+	nombre varchar(20),
+	apellido varchar(20),
+	email varchar(35),
+	telefono varchar(20),
+	password varchar(20),
+	primary key(cod_maestro));
+
+create table alumno(
+	cod_alumno varchar(10) not null,
+	nombre varchar(20),
+	apellido varchar(20),
+	email varchar(35),
+	telefono varchar(20),
+	password varchar(20),
+	primary key(cod_alumno));
+
+
+create table padre(
+	cod_padre varchar(10) not null,
+	nombre varchar(20),
+	apellido varchar(20),
+	email varchar(35),
+	telefono varchar(20),
+	password varchar(20),
+	primary key(cod_padre));
+
+create table asignatura(
+	cod_asignatura varchar(10) not null,
+	nombre varchar(20),
+	horario varchar(20),
+	cod_maestro varchar(10) not null,
+	primary key(cod_asignatura),
+	foreign key (cod_maestro) references maestro(cod_maestro));
+
+create table notas(
+	cod_nota int unsigned not null auto_increment,
+	periodo varchar(20),
+	examen varchar(20),
+	acumulativo varchar(20) not null,
+	cod_alumno varchar(10) not null,
+	cod_asignatura varchar(10) not null,
+	primary key(cod_nota),
+	foreign key (cod_asignatura) references asignatura(cod_asignatura),
+	foreign key (cod_alumno) references alumno(cod_alumno));
+
+
+create table matricula(
+	cod_maestro varchar(10) not null,
+	cod_alumno varchar(10) not null,
+	cod_asignatura varchar(10) not null,
+	primary key(cod_maestro, cod_alumno, cod_asignatura),
+	foreign key (cod_maestro) references maestro(cod_maestro),
+	foreign key (cod_asignatura) references asignatura(cod_asignatura),
+	foreign key (cod_alumno) references alumno(cod_alumno));
+
+create table seguimiento(
+	cod_padre varchar(10) not null,
+	cod_alumno varchar(10) not null,
+	primary key(cod_padre,cod_alumno),
+	foreign key (cod_alumno) references alumno(cod_alumno),
+	foreign key (cod_padre) references padre(cod_padre));
+
+create table recursos(
+	cod_recurso int unsigned not null auto_increment,
+	tipo_recurso varchar(20),
+	url varchar(35),
+	detalle varchar(50),
+	primary key(cod_recurso));
+
+
+/*******************************Insersiones a algunas tablas**********************************/
+
+
+INSERT INTO maestro(cod_maestro, nombre, apellido, email, telefono, password)
+VALUES("MA0100", "Sindy","Barahona", "sindy.barahona@ujcv.edu.hn", "99234458", "1234"),
+	("MA1328", "Hector","Barahona", "Hector.barahona@ujcv.edu.hn", "99234458", "1234");
+
+INSERT INTO alumno(cod_alumno, nombre, apellido, email, telefono, password)
+VALUES("ALUM320", "Cristian","Flores", "cristian.flores@ujcv.edu.hn", "99234458", "1234"),
+	("ALUM347", "Katy","Flores", "katy.flores@ujcv.edu.hn", "99234458", "1234");
+
+INSERT INTO padre(cod_padre, nombre, apellido, email, telefono, password)
+VALUES("PA32043", "Jose","Amaya", "jose.amaya@ujcv.edu.hn", "99234458", "1234"),
+	("PA34752", "Delfina","Recarte", "delfina.Recarte@ujcv.edu.hn", "99234458", "1234");
+
+INSERT INTO asignatura(cod_asignatura, nombre, horario, cod_maestro)
+VALUES("ASIG101", "Matematicas","10am :12pm lunes", "MA0100"),
+	("ASIG111", "Precalculo","10am :12pm jueves", "MA0100");
+
+INSERT INTO matricula(cod_maestro, cod_alumno, cod_asignatura)
+VALUES("MA0100", "ALUM320", "ASIG101"),
+	("MA0100", "ALUM347", "ASIG111");
+
+
+
+/*************************************Consultas***********************************************/
+/*Esta consulta de ejemplo, normalmente esto es lo que haremos en la aplicacion. En esta consulta se puede ver que maestro le da clases a que alumno y que asignatura le imparte ;-) */
+
+select maestro.nombre as Maestro, alumno.nombre as Alumno, asignatura.nombre as Asignatura from matricula, maestro, asignatura, alumno
+	where matricula.cod_maestro=maestro.cod_maestro and matricula.cod_alumno=alumno.cod_alumno and matricula.cod_asignatura=asignatura.cod_asignatura;
+
+
