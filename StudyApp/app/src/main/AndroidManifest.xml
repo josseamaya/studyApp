@@ -27,6 +27,14 @@
         <activity
             android:name=".Registro"
             android:label="@string/title_activity_registro"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Maestro"
+            android:label="@string/title_activity_maestro"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Padres"
+            android:label="@string/title_activity_padres"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

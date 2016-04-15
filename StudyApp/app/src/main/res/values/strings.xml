@@ -3,4 +3,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_estudiante">Estudiante</string>
     <string name="title_activity_registro">Registro</string>
+    <string name="title_activity_maestro">Maestro</string>
+    <string name="title_activity_padres">Padres</string>
 </resources>

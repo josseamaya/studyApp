@@ -9,8 +9,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.joseamaya.studyapp.Estudiante"
-    tools:showIn="@layout/activity_estudiante"
+    tools:context="com.example.joseamaya.studyapp.Padres"
+    tools:showIn="@layout/activity_padres"
     android:orientation="vertical">
 
     <LinearLayout
@@ -22,7 +22,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/estudianteImagen"
+            android:id="@+id/padreImagen"
             android:layout_weight="0.61" />
     </LinearLayout>
 
@@ -34,8 +34,8 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Matricula"
-            android:id="@+id/estudianteBotonMatricula" />
+            android:text="Seguimiento"
+            android:id="@+id/padreBotonSeguimiento" />
     </LinearLayout>
 
     <LinearLayout
@@ -46,8 +46,8 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Notas"
-            android:id="@+id/estudianteBotonNotas" />
+            android:text="Recursos"
+            android:id="@+id/padreBotonRecursos" />
     </LinearLayout>
 
     <LinearLayout
@@ -58,8 +58,8 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Recursos"
-            android:id="@+id/estudianteBotonRecursos" />
+            android:text="Notas"
+            android:id="@+id/padreBotonNotas" />
     </LinearLayout>
 
     <LinearLayout
@@ -71,8 +71,8 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Solicitudes"
-            android:id="@+id/estudianteBotonSolicitudes" />
+            android:text="*Centros y Becas"
+            android:id="@+id/padreBotonCentros" />
     </LinearLayout>
 
 </LinearLayout>
