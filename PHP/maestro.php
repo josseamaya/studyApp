@@ -46,6 +46,7 @@ class Maestro
         // Consulta de la tabla maestro
         $consulta = "SELECT cod_maestro,
                             nombre,
+                            apellido,
                             email
                              FROM maestro
                              WHERE cod_maestro = ?";
