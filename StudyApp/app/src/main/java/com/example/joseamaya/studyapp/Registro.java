@@ -1,5 +1,6 @@
 package com.example.joseamaya.studyapp;
 
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +11,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
+
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,7 +35,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class Registro extends AppCompatActivity implements View.OnClickListener{
+public class Registro extends AppCompatActivity implements View.OnClickListener {
     EditText nombre;
     EditText apellido;
     EditText correo;
@@ -39,6 +45,8 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
     RadioButton maestro;
     RadioButton padre;
     Button guardar;
+    TextView tv_result;
+
 
     // IP de mi Url
     String IP = "http://studyaplication.esy.es";
@@ -48,6 +56,11 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
     String INSERT_P = IP + "/insertar_padre.php";
 
     ObtenerWebService hiloconexion;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,15 +79,16 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
         });
 
         //Enlace con los elementos
-        nombre=(EditText)findViewById(R.id.editText);
-        apellido=(EditText)findViewById(R.id.editText2);
-        correo=(EditText)findViewById(R.id.editText3);
-        telefono=(EditText)findViewById(R.id.editText4);
-        contraseña=(EditText)findViewById(R.id.editText5);
-        guardar=(Button)findViewById(R.id.button);
-        estudiante=(RadioButton)findViewById(R.id.radioButton);
-        maestro=(RadioButton)findViewById(R.id.radioButton2);
-        padre=(RadioButton)findViewById(R.id.radioButton3);
+        nombre = (EditText) findViewById(R.id.editText);
+        apellido = (EditText) findViewById(R.id.editText2);
+        correo = (EditText) findViewById(R.id.editText3);
+        telefono = (EditText) findViewById(R.id.editText4);
+        contraseña = (EditText) findViewById(R.id.editText5);
+        guardar = (Button) findViewById(R.id.button);
+        estudiante = (RadioButton) findViewById(R.id.radioButton);
+        maestro = (RadioButton) findViewById(R.id.radioButton2);
+        padre = (RadioButton) findViewById(R.id.radioButton3);
+        tv_result = (TextView) findViewById(R.id.tv_result);
 
         //Listener de los botones
         nombre.setOnClickListener(this);
@@ -86,23 +100,25 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
         maestro.setOnClickListener(this);
         estudiante.setOnClickListener(this);
         padre.setOnClickListener(this);
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
 
     @Override
     public void onClick(View v) {
-        if(v.getId()==R.id.button){
+        if (v.getId() == R.id.button) {
             hiloconexion = new ObtenerWebService();
-            if(maestro.isChecked()==true){
-                hiloconexion.execute(INSERT_M,"3",nombre.getText().toString(),apellido.getText().toString(),correo.getText().toString(),
-                        telefono.getText().toString(),contraseña.getText().toString());   // Parámetros que recibe doInBackground
-
-            }else if(estudiante.isChecked()==true){
-                hiloconexion.execute(INSERT_E,"2",nombre.getText().toString(),apellido.getText().toString(),correo.getText().toString(),
-                        telefono.getText().toString(),contraseña.getText().toString());   // Parámetros que recibe doInBackground
-            }else if(padre.isChecked()==true){
-                hiloconexion.execute(INSERT_P,"1",nombre.getText().toString(),apellido.getText().toString(),correo.getText().toString(),
-                        telefono.getText().toString(),contraseña.getText().toString());   // Parámetros que recibe doInBackground
+            if (maestro.isChecked() == true) {
+                hiloconexion.execute(INSERT_M, "3", nombre.getText().toString(), apellido.getText().toString(), correo.getText().toString(),
+                        telefono.getText().toString(), contraseña.getText().toString());   // Parámetros que recibe doInBackground
+            } else if (estudiante.isChecked() == true) {
+                hiloconexion.execute(INSERT_E, "2", nombre.getText().toString(), apellido.getText().toString(), correo.getText().toString(),
+                        telefono.getText().toString(), contraseña.getText().toString());   // Parámetros que recibe doInBackground
+            } else if (padre.isChecked() == true) {
+                hiloconexion.execute(INSERT_P, "1", nombre.getText().toString(), apellido.getText().toString(), correo.getText().toString(),
+                        telefono.getText().toString(), contraseña.getText().toString());   // Parámetros que recibe doInBackground
             }
 
         }
@@ -114,18 +130,57 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
 
     }
 
-    public class ObtenerWebService extends AsyncTask<String,Void,String> {
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Registro Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://com.example.joseamaya.studyapp/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Registro Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://com.example.joseamaya.studyapp/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
+        client.disconnect();
+    }
+
+    public class ObtenerWebService extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... params) {
 
             String cadena = params[0];
             URL url = null; // Url de donde queremos obtener información
-            String devuelve ="";
+            String devuelve = "";
 
 
-
-            if(params[1]=="1"){    // Ingresar padres
+            if (params[1] == "1") {    // Ingresar padres
                 try {
                     HttpURLConnection urlConn;
 
@@ -163,8 +218,8 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
                     if (respuesta == HttpURLConnection.HTTP_OK) {
 
                         String line;
-                        BufferedReader br=new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
-                        while ((line=br.readLine()) != null) {
+                        BufferedReader br = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
+                        while ((line = br.readLine()) != null) {
                             result.append(line);
                             //response+=line;
                         }
@@ -195,8 +250,7 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
                 return devuelve;
 
 
-            }
-            else if(params[1]=="2"){    // Ingresar estudiantes
+            } else if (params[1] == "2") {    // Ingresar estudiantes
                 try {
                     HttpURLConnection urlConn;
 
@@ -234,8 +288,8 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
                     if (respuesta == HttpURLConnection.HTTP_OK) {
 
                         String line;
-                        BufferedReader br=new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
-                        while ((line=br.readLine()) != null) {
+                        BufferedReader br = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
+                        while ((line = br.readLine()) != null) {
                             result.append(line);
                             //response+=line;
                         }
@@ -266,8 +320,7 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
                 return devuelve;
 
 
-            }
-            else if(params[1]=="3"){    // Ingresar maestros
+            } else if (params[1] == "3") {    // Ingresar maestros
 
                 try {
                     HttpURLConnection urlConn;
@@ -306,8 +359,8 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
                     if (respuesta == HttpURLConnection.HTTP_OK) {
 
                         String line;
-                        BufferedReader br=new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
-                        while ((line=br.readLine()) != null) {
+                        BufferedReader br = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
+                        while ((line = br.readLine()) != null) {
                             result.append(line);
                             //response+=line;
                         }
@@ -317,7 +370,6 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
                         //Accedemos al vector de resultados
 
                         String resultJSON = respuestaJSON.getString("estado");   // estado es el nombre del campo en el JSON
-
                         if (resultJSON == "1") {      // hay un Maestro que mostrar
                             devuelve = "Maestro registrado correctamente";
 
@@ -338,8 +390,7 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
                 return devuelve;
 
 
-            }
-            else if(params[1]=="4"){    // update
+            } else if (params[1] == "4") {    // update
 
 
             }
@@ -353,7 +404,7 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
 
         @Override
         protected void onPostExecute(String s) {
-            //resultado.setText(s);
+            tv_result.setText(s);
             //super.onPostExecute(s);
         }
 
