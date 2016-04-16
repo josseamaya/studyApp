@@ -106,6 +106,11 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
             }
 
         }
+        nombre.setText("");
+        apellido.setText("");
+        correo.setText("");
+        telefono.setText("");
+        contraseña.setText("");
 
     }
 
