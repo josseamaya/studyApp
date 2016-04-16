@@ -30,6 +30,9 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     Button consultar;
@@ -43,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView resultado;
 
     // IP de mi Url
-    String IP = "http://http://studyaplication.esy.es";
+    String IP = "http://studyaplication.esy.es";
     // Rutas de los Web Services
     String GET = IP + "/obtener_maestro.php";
     String GET_BY_ID = IP + "/obtener_maestro_por_id.php";
