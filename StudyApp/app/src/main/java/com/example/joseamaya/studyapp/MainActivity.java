@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public void detalle_michell(View v){
+    public void Registrar(View v){
         Intent intento=new Intent(this, Registro.class);
         startActivity(intento);
     }

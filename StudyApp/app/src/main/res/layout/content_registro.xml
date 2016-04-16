@@ -19,33 +19,45 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Registro de Usuarios"
-        android:id="@+id/textView6" />
+        android:id="@+id/textView6"
+        android:layout_weight="0.10" />
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="330dp"
-        android:layout_height="53dp">
+        android:layout_width="337dp"
+        android:layout_height="53dp"
+        android:weightSum="1"
+        android:layout_weight="0.03">
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Estudiante"
-            android:id="@+id/radioButton"
-            android:checked="false" />
+        <RadioGroup
+            android:layout_width="241dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="0.61">
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Maestro"
-            android:id="@+id/radioButton2"
-            android:checked="false" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Estudiante"
+                android:id="@+id/radioButton"
+                android:checked="true" />
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Padre"
-            android:id="@+id/radioButton3"
-            android:checked="false" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Maestro"
+                android:id="@+id/radioButton2"
+                android:checked="false" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Padre"
+                android:id="@+id/radioButton3"
+                android:checked="false" />
+
+        </RadioGroup>
+
     </LinearLayout>
 
     <LinearLayout

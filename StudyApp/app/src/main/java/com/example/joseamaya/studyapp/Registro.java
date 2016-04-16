@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,12 +35,17 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
     EditText correo;
     EditText telefono;
     EditText contraseña;
+    RadioButton estudiante;
+    RadioButton maestro;
+    RadioButton padre;
     Button guardar;
 
     // IP de mi Url
     String IP = "http://studyaplication.esy.es";
     // Rutas de los Web Services
-    String INSERT = IP + "/insertar_maestro.php";
+    String INSERT_M = IP + "/insertar_maestro.php";
+    String INSERT_E = IP + "/insertar_alumno.php";
+    String INSERT_P = IP + "/insertar_padre.php";
 
     ObtenerWebService hiloconexion;
 
@@ -66,6 +72,9 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
         telefono=(EditText)findViewById(R.id.editText4);
         contraseña=(EditText)findViewById(R.id.editText5);
         guardar=(Button)findViewById(R.id.button);
+        estudiante=(RadioButton)findViewById(R.id.radioButton);
+        maestro=(RadioButton)findViewById(R.id.radioButton2);
+        padre=(RadioButton)findViewById(R.id.radioButton3);
 
         //Listener de los botones
         nombre.setOnClickListener(this);
@@ -74,6 +83,9 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
         telefono.setOnClickListener(this);
         contraseña.setOnClickListener(this);
         guardar.setOnClickListener(this);
+        maestro.setOnClickListener(this);
+        estudiante.setOnClickListener(this);
+        padre.setOnClickListener(this);
     }
 
 
@@ -81,8 +93,17 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View v) {
         if(v.getId()==R.id.button){
             hiloconexion = new ObtenerWebService();
-            hiloconexion.execute(INSERT,"3","001",nombre.getText().toString(),apellido.getText().toString(),correo.getText().toString(),
-                    telefono.getText().toString(),contraseña.getText().toString());   // Parámetros que recibe doInBackground
+            if(maestro.isChecked()==true){
+                hiloconexion.execute(INSERT_M,"3",nombre.getText().toString(),apellido.getText().toString(),correo.getText().toString(),
+                        telefono.getText().toString(),contraseña.getText().toString());   // Parámetros que recibe doInBackground
+
+            }else if(estudiante.isChecked()==true){
+                hiloconexion.execute(INSERT_E,"2",nombre.getText().toString(),apellido.getText().toString(),correo.getText().toString(),
+                        telefono.getText().toString(),contraseña.getText().toString());   // Parámetros que recibe doInBackground
+            }else if(padre.isChecked()==true){
+                hiloconexion.execute(INSERT_P,"1",nombre.getText().toString(),apellido.getText().toString(),correo.getText().toString(),
+                        telefono.getText().toString(),contraseña.getText().toString());   // Parámetros que recibe doInBackground
+            }
 
         }
 
@@ -99,14 +120,149 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
 
 
 
-            if(params[1]=="1"){    // Consulta de todos los Maestros
+            if(params[1]=="1"){    // Ingresar padres
+                try {
+                    HttpURLConnection urlConn;
+
+                    DataOutputStream printout;
+                    DataInputStream input;
+                    url = new URL(cadena);
+                    urlConn = (HttpURLConnection) url.openConnection();
+                    urlConn.setDoInput(true);
+                    urlConn.setDoOutput(true);
+                    urlConn.setUseCaches(false);
+                    urlConn.setRequestProperty("Content-Type", "application/json");
+                    urlConn.setRequestProperty("Accept", "application/json");
+                    urlConn.connect();
+                    //Creo el Objeto JSON
+                    JSONObject jsonParam = new JSONObject();
+
+                    jsonParam.put("nombre", params[2]);
+                    jsonParam.put("apellido", params[3]);
+                    jsonParam.put("email", params[4]);
+                    jsonParam.put("telefono", params[5]);
+                    jsonParam.put("password", params[6]);
+                    // Envio los parámetros post.
+                    OutputStream os = urlConn.getOutputStream();
+                    BufferedWriter writer = new BufferedWriter(
+                            new OutputStreamWriter(os, "UTF-8"));
+                    writer.write(jsonParam.toString());
+                    writer.flush();
+                    writer.close();
+
+                    int respuesta = urlConn.getResponseCode();
+
+
+                    StringBuilder result = new StringBuilder();
+
+                    if (respuesta == HttpURLConnection.HTTP_OK) {
+
+                        String line;
+                        BufferedReader br=new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
+                        while ((line=br.readLine()) != null) {
+                            result.append(line);
+                            //response+=line;
+                        }
+
+                        //Creamos un objeto JSONObject para poder acceder a los atributos (campos) del objeto.
+                        JSONObject respuestaJSON = new JSONObject(result.toString());   //Creo un JSONObject a partir del StringBuilder pasado a cadena
+                        //Accedemos al vector de resultados
+
+                        String resultJSON = respuestaJSON.getString("estado");   // estado es el nombre del campo en el JSON
+
+                        if (resultJSON == "1") {      // hay un padre que mostrar
+                            devuelve = "Padre registrado correctamente";
+
+                        } else if (resultJSON == "2") {
+                            devuelve = "El padre no pudo registrarse";
+                        }
+
+                    }
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                return devuelve;
+
 
             }
-            else if(params[1]=="2"){    // consulta por id
+            else if(params[1]=="2"){    // Ingresar estudiantes
+                try {
+                    HttpURLConnection urlConn;
+
+                    DataOutputStream printout;
+                    DataInputStream input;
+                    url = new URL(cadena);
+                    urlConn = (HttpURLConnection) url.openConnection();
+                    urlConn.setDoInput(true);
+                    urlConn.setDoOutput(true);
+                    urlConn.setUseCaches(false);
+                    urlConn.setRequestProperty("Content-Type", "application/json");
+                    urlConn.setRequestProperty("Accept", "application/json");
+                    urlConn.connect();
+                    //Creo el Objeto JSON
+                    JSONObject jsonParam = new JSONObject();
+
+                    jsonParam.put("nombre", params[2]);
+                    jsonParam.put("apellido", params[3]);
+                    jsonParam.put("email", params[4]);
+                    jsonParam.put("telefono", params[5]);
+                    jsonParam.put("password", params[6]);
+                    // Envio los parámetros post.
+                    OutputStream os = urlConn.getOutputStream();
+                    BufferedWriter writer = new BufferedWriter(
+                            new OutputStreamWriter(os, "UTF-8"));
+                    writer.write(jsonParam.toString());
+                    writer.flush();
+                    writer.close();
+
+                    int respuesta = urlConn.getResponseCode();
+
+
+                    StringBuilder result = new StringBuilder();
+
+                    if (respuesta == HttpURLConnection.HTTP_OK) {
+
+                        String line;
+                        BufferedReader br=new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
+                        while ((line=br.readLine()) != null) {
+                            result.append(line);
+                            //response+=line;
+                        }
+
+                        //Creamos un objeto JSONObject para poder acceder a los atributos (campos) del objeto.
+                        JSONObject respuestaJSON = new JSONObject(result.toString());   //Creo un JSONObject a partir del StringBuilder pasado a cadena
+                        //Accedemos al vector de resultados
+
+                        String resultJSON = respuestaJSON.getString("estado");   // estado es el nombre del campo en el JSON
+
+                        if (resultJSON == "1") {      // hay un padre que mostrar
+                            devuelve = "Estudiante registrado correctamente";
+
+                        } else if (resultJSON == "2") {
+                            devuelve = "El estudiante no pudo registrarse";
+                        }
+
+                    }
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                return devuelve;
 
 
             }
-            else if(params[1]=="3"){    // insert
+            else if(params[1]=="3"){    // Ingresar maestros
 
                 try {
                     HttpURLConnection urlConn;
@@ -123,12 +279,12 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
                     urlConn.connect();
                     //Creo el Objeto JSON
                     JSONObject jsonParam = new JSONObject();
-                    jsonParam.put("cod_maestro", params[2]);
-                    jsonParam.put("nombre", params[3]);
-                    jsonParam.put("apellido", params[4]);
-                    jsonParam.put("email", params[5]);
-                    jsonParam.put("telefono", params[6]);
-                    jsonParam.put("password", params[7]);
+
+                    jsonParam.put("nombre", params[2]);
+                    jsonParam.put("apellido", params[3]);
+                    jsonParam.put("email", params[4]);
+                    jsonParam.put("telefono", params[5]);
+                    jsonParam.put("password", params[6]);
                     // Envio los parámetros post.
                     OutputStream os = urlConn.getOutputStream();
                     BufferedWriter writer = new BufferedWriter(
@@ -158,10 +314,10 @@ public class Registro extends AppCompatActivity implements View.OnClickListener{
                         String resultJSON = respuestaJSON.getString("estado");   // estado es el nombre del campo en el JSON
 
                         if (resultJSON == "1") {      // hay un Maestro que mostrar
-                            devuelve = "Maestro insertado correctamente";
+                            devuelve = "Maestro registrado correctamente";
 
                         } else if (resultJSON == "2") {
-                            devuelve = "El maestro no pudo insertarse";
+                            devuelve = "El maestro no pudo registrarse";
                         }
 
                     }
