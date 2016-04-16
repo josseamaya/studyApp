@@ -405,7 +405,7 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
         @Override
         protected void onPostExecute(String s) {
             tv_result.setText(s);
-            //super.onPostExecute(s);
+            super.onPostExecute(s);
         }
 
         @Override

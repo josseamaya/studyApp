@@ -165,7 +165,6 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:text="New Text"
             android:id="@+id/tv_result" />
     </LinearLayout>
 
