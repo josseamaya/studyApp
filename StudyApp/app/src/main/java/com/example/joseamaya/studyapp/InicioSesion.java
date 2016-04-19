@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -42,24 +43,34 @@ public class InicioSesion extends AppCompatActivity {
 
 
     }
-    public void onClickInicioAceptar(View v){
-        RadioButton radioButtonEstudiante = (RadioButton)findViewById(R.id.inicioRadioEstudiante);
-        RadioButton radioButtonMaestro = (RadioButton)findViewById(R.id.inicioRadioMaestro);
-        RadioButton radioButtonPadre = (RadioButton)findViewById(R.id.inicioRadioPadre);
-        if (radioButtonEstudiante.isChecked()==true){
+    public void onClickInicioAceptar(View v) {
+        TextView tv = (TextView) findViewById(R.id.inicioTextoCorreo);
+        TextView tv2 = (TextView) findViewById(R.id.inicioTextoContrasena);
+        if (tv.getText() == "" || tv2.getText() == "") {
 
-            obtenerJson("http://studyaplication.esy.es/obtener_alumno.php","alumno");
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(this, "Ingrese información", duration);
+            toast.show();
 
+        } else {
+
+            RadioButton radioButtonEstudiante = (RadioButton) findViewById(R.id.inicioRadioEstudiante);
+            RadioButton radioButtonMaestro = (RadioButton) findViewById(R.id.inicioRadioMaestro);
+            RadioButton radioButtonPadre = (RadioButton) findViewById(R.id.inicioRadioPadre);
+            if (radioButtonEstudiante.isChecked() == true) {
+
+                obtenerJson("http://studyaplication.esy.es/obtener_alumno.php", "alumno");
+
+            }
+            if (radioButtonMaestro.isChecked() == true) {
+
+                obtenerJson("http://studyaplication.esy.es/obtener_maestro.php", "maestro");
+            }
+            if (radioButtonPadre.isChecked() == true) {
+
+                obtenerJson("http://studyaplication.esy.es/obtener_padre.php", "padre");
+            }
         }
-        if (radioButtonMaestro.isChecked()==true){
-
-            obtenerJson("http://studyaplication.esy.es/obtener_maestro.php","maestro");
-        }
-        if (radioButtonPadre.isChecked()==true){
-
-            obtenerJson("http://studyaplication.esy.es/obtener_padre.php","padre");
-        }
-
     }
     public void onClickInicioCancelar(View v){
         TextView tvInicioTextoCorreo = (TextView)findViewById(R.id.inicioTextoCorreo);
@@ -72,6 +83,7 @@ public class InicioSesion extends AppCompatActivity {
         startActivity(intent);
     }
     public void obtenerJson(String c, final String i){
+        final Context context=this;
         JsonObjectRequest jor= new JsonObjectRequest(
                 c,
                 new Response.Listener<JSONObject>() {
@@ -87,33 +99,62 @@ public class InicioSesion extends AppCompatActivity {
 
                             TextView tvCorreo=(TextView)findViewById(R.id.inicioTextoCorreo);
 
-                            for (int i=0;i<=3;i++)
+                            String contrasena=null;
+                            boolean verificador=false;
+
+                            for (int i=0;i<=arregloAlunos.length()-1;i++)
                             {
                                  estudiante = (JSONObject) arregloAlunos.get(i);
                                  String correo = estudiante.getString("email");
                                 if (correo.equals(tvCorreo.getText().toString()))
                                 {
-                                    TextView tvTitulo = (TextView) findViewById(R.id.inicioTextTitulo);
-                                    tvTitulo.setText("correo encontrado");
+                                    contrasena = estudiante.getString("password");
+                                    verificador=true;
                                  break;
                                 }
-                            }
-
-                            String contrasena = estudiante.getString("password");
-
-                            TextView tvContrasena= (TextView)findViewById(R.id.inicioTextoContrasena);
-
-                            TextView tvTitulo = (TextView) findViewById(R.id.inicioTextTitulo);
-
-
-                           if (contrasena.equals(tvContrasena.getText().toString())){
-
-                                tvTitulo.setText("todo bien");
-                            }
                                 else
                                 {
-                                    tvTitulo.setText("Correo o contraseña incorrecto");
+                                    verificador=false;
                                 }
+
+                            }
+
+                            if (verificador==false){
+                                int duration = Toast.LENGTH_SHORT;
+                                Toast toast = Toast.makeText(context, "Usuario no registrado", duration);
+                                toast.show();
+                            }
+                            else {
+
+                                TextView tvContrasena = (TextView) findViewById(R.id.inicioTextoContrasena);
+
+                                if (contrasena.equals(tvContrasena.getText().toString())) {
+
+                                    int duration = Toast.LENGTH_SHORT;
+                                    Toast toast = Toast.makeText(context, "Logging Correcto", duration);
+                                    toast.show();
+
+                                    if (i=="alumno"){
+                                        Intent intent=new Intent(context, Estudiante.class);
+                                        startActivity(intent);
+
+                                    }
+                                    if (i=="maestro"){
+                                        Intent intent=new Intent(context, Maestro.class);
+                                        startActivity(intent);
+
+                                    }
+                                    if (i=="padre"){
+                                        Intent intent=new Intent(context, Padres.class);
+                                        startActivity(intent);
+
+                                    }
+                                } else {
+                                    int duration = Toast.LENGTH_SHORT;
+                                    Toast toast = Toast.makeText(context, "Contraseña Incorrecta", duration);
+                                    toast.show();
+                                }
+                            }
 
 
                         } catch (JSONException e) {
