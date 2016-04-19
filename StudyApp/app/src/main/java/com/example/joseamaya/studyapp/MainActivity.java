@@ -55,4 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    public void onClickIniciarSesion(View v){
+        Intent intent=new Intent(this, InicioSesion.class);
+        startActivity(intent);
+    }
 }
