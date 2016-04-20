@@ -35,7 +35,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Matricula"
-            android:id="@+id/estudianteBotonMatricula" />
+            android:id="@+id/estudianteBotonMatricula"
+            android:onClick="Matricula"/>
     </LinearLayout>
 
     <LinearLayout
