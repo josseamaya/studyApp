@@ -34,7 +34,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Clases"
+            android:text="Agregar Clases"
             android:id="@+id/maestroBotonClases" />
     </LinearLayout>
 
@@ -46,7 +46,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Notas"
+            android:text="Agregar Notas"
             android:id="@+id/maestroBotonNotas" />
     </LinearLayout>
 
