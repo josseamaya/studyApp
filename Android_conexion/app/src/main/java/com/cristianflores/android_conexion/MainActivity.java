@@ -475,7 +475,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         @Override
         protected void onPostExecute(String s) {
             resultado.setText(s);
-            //super.onPostExecute(s);
+            super.onPostExecute(s);
         }
 
         @Override

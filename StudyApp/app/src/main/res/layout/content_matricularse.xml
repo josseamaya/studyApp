@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/editbuscar"
             android:layout_weight="1"
-            android:editable="false" />
+            android:editable="true" />
     </LinearLayout>
 
     <LinearLayout
@@ -95,10 +95,10 @@
             android:text="Asignatura:"
             android:id="@+id/textView11" />
 
-        <ExpandableListView
+        <ListView
             android:layout_width="wrap_content"
             android:layout_height="113dp"
-            android:id="@+id/asignatura" />
+            android:id="@+id/listasignatura" />
     </LinearLayout>
 
     <Button
