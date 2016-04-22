@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
@@ -208,7 +209,7 @@ public class Matricularse extends AppCompatActivity implements View.OnClickListe
 
                         try {
                             JSONArray asig = response.getJSONArray("asignatura");
-                            ArrayList<JSONObject> dataSource = new ArrayList<JSONObject>();
+                            final ArrayList<JSONObject> dataSource = new ArrayList<JSONObject>();
                             JSONObject codmaestro=null;
                             for (int i = 0; i < asig.length(); i++) {
                                 codmaestro = (JSONObject) asig.get(i);
@@ -218,10 +219,25 @@ public class Matricularse extends AppCompatActivity implements View.OnClickListe
                                 }
 
                             }
-                            Celda adapter = new Celda(context, 0, dataSource);
+                            final Celda adapter = new Celda(context, 0, dataSource);
                             ((ListView) findViewById(R.id.listasignatura)).setAdapter(adapter);
 
-                        } catch (JSONException e) {
+                            //seleccionar un dato de la lista
+                            final ListView lista=(ListView)findViewById(R.id.listasignatura);
+                            final TextView resul=(TextView)findViewById(R.id.textresultado);
+
+                            assert lista != null;
+                            lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                                             public void onItemClick(AdapterView<?> customerAdapter, View footer, int selectedInt, long selectedLong) {
+                                                                 String seleccion = (String) lista.getItemAtPosition(selectedInt);
+                                                                 resul.setText(seleccion);
+                                                             }
+                                                         }
+
+                                );
+
+
+                            }catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }

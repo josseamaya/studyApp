@@ -58,6 +58,7 @@ public class clases extends AppCompatActivity {
 
     }
     public void onClickClasesAgregar(View v){
+        hiloconexion = new ObtenerWebService();
         EditText cajaTextoClaseCodigo =(EditText)findViewById(R.id.cajaTextoClasesCodigo);
         EditText cajaTextoClaseNombre =(EditText)findViewById(R.id.cajaTextoClasesNombre);
         EditText cajaTextoClaseHoario =(EditText)findViewById(R.id.cajaTextoClasesHoario);
