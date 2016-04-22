@@ -64,7 +64,7 @@ public class notasMaestro extends AppCompatActivity {
 
         obtenerCodigosAlumnos("http://studyaplication.esy.es/obtener_matricula.php", codigoMaestro);
 
-        try {
+        /*try {
             Thread.sleep(1000);                 //1000 milliseconds is one second.
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
@@ -75,7 +75,7 @@ public class notasMaestro extends AppCompatActivity {
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-        obtenerAlumnosFiltrados("http://studyaplication.esy.es/obtener_alumno.php");
+        obtenerAlumnosFiltrados("http://studyaplication.esy.es/obtener_alumno.php");*/
 
         ListView lv2 = (ListView) findViewById(R.id.listaAlumnosNotas);
         lv2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -93,7 +93,6 @@ public class notasMaestro extends AppCompatActivity {
 
                 TextView textView4= (TextView) view.findViewById(R.id.textCeldaComplejaAlumnosNombre);
                 final String nombreAlumno = (String) textView4.getText();
-
 
 
                 Intent intent = new Intent(context, IngresarNota.class);
