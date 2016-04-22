@@ -38,5 +38,11 @@ public class Maestro extends AppCompatActivity {
         intent.putExtra("nombreMaestro2", this.getIntent().getStringExtra("nombreMaestro"));
         startActivity(intent);
     }
+    public void onClickMaestroNotas(View v) {
+        Intent intent=new Intent(this, notasMaestro.class);
+        intent.putExtra("codigoMaestro3", this.getIntent().getStringExtra("codigoMaestro"));
+        intent.putExtra("nombreMaestro3", this.getIntent().getStringExtra("nombreMaestro"));
+        startActivity(intent);
+    }
 
 }

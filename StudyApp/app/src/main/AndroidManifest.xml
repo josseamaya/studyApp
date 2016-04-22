@@ -59,6 +59,14 @@
         <activity
             android:name=".clases"
             android:label="@string/title_activity_clases"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".notasMaestro"
+            android:label="@string/title_activity_notas_maestro"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".IngresarNota"
+            android:label="@string/title_activity_ingresar_nota"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

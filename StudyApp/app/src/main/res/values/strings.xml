@@ -8,4 +8,6 @@
     <string name="title_activity_inicio_sesion">InicioSesion</string>
     <string name="title_activity_matricularse">Matricularse</string>
     <string name="title_activity_clases">clases</string>
+    <string name="title_activity_notas_maestro">notasMaestro</string>
+    <string name="title_activity_ingresar_nota">IngresarNota</string>
 </resources>
