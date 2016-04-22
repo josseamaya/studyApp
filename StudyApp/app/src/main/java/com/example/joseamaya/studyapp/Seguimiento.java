@@ -1,12 +1,16 @@
 package com.example.joseamaya.studyapp;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,10 +32,9 @@ public class Seguimiento extends AppCompatActivity implements View.OnClickListen
 
     EditText id_buscarAlumno;
     TextView txt_nombre;
-    EditText e_cod_alumno;
-    EditText e_cod_padre;
+    String ingresar_cod_padre;
     Button btn_seguir;
-    Button btn_buscar;
+    ImageButton btn_buscar;
 
     // IP de mi Url
     String IP = "http://studyaplication.esy.es";
@@ -50,19 +53,22 @@ public class Seguimiento extends AppCompatActivity implements View.OnClickListen
         //Enlace con los elementos
         id_buscarAlumno = (EditText) findViewById(R.id.id_buscarAlumno);
         txt_nombre = (TextView) findViewById(R.id.txt_nombre);
-        e_cod_alumno = (EditText) findViewById(R.id.e_cod_alumno);
-        e_cod_padre = (EditText) findViewById(R.id.e_cod_padre);
         btn_seguir=(Button)findViewById(R.id.btn_seguir);
-        btn_buscar=(Button)findViewById(R.id.btn_buscar);
+        btn_buscar=(ImageButton)findViewById(R.id.btn_buscar);
 
         //Listener de los botones
         btn_buscar.setOnClickListener(this);
         btn_seguir.setOnClickListener(this);
 
+       // TextView tvCodigoMaestro = (TextView)findViewById(R.id.e_cod_padre);
+        ingresar_cod_padre=(this.getIntent().getStringExtra("codigopadre2"));
+      //  tvCodigoMaestro.setText(this.getIntent().getStringExtra("codigopadre2"));
+
     }
 
     @Override
     public void onClick(View v) {
+        final Context context=this;
 
         switch (v.getId()){
 
@@ -70,14 +76,17 @@ public class Seguimiento extends AppCompatActivity implements View.OnClickListen
 
                 hiloconexion = new ObtenerWebService();
                 String cadenallamada = GET_BY_ID + "?cod_alumno=" + id_buscarAlumno.getText().toString();
-                e_cod_alumno.setText(id_buscarAlumno.getText().toString());
                 hiloconexion.execute(cadenallamada, "2");   // Parámetros que recibe doInBackground
 
                 break;
             case R.id.btn_seguir:
 
                 hiloconexion = new ObtenerWebService();
-                hiloconexion.execute(INSERT,"3",e_cod_alumno.getText().toString(),e_cod_padre.getText().toString());   // Parámetros que recibe doInBackground
+                hiloconexion.execute(INSERT, "3", ingresar_cod_padre, id_buscarAlumno.getText().toString());   // Parámetros que recibe doInBackground
+
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, "Seguimiento realizado correctamente", duration);
+                toast.show();
 
                 break;
             default:
@@ -203,7 +212,7 @@ public class Seguimiento extends AppCompatActivity implements View.OnClickListen
                         String resultJSON = respuestaJSON.getString("estado");   // estado es el nombre del campo en el JSON
 
                         if (resultJSON == "1") {      // hay un seguimiento que mostrar
-                            devuelve2 = "Seguimiento realizado correctamente";
+                        //    devuelve2 = "Seguimiento realizado correctamente";
 
                         } else if (resultJSON == "2") {
                             devuelve2 = "El Seguimiento no pudo realizarse";

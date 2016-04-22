@@ -1,11 +1,13 @@
 package com.example.joseamaya.studyapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 public class Padres extends AppCompatActivity {
 
@@ -24,6 +26,15 @@ public class Padres extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        TextView tvCodigoMaestro = (TextView)findViewById(R.id.cod_padre);
+        tvCodigoMaestro.setText(this.getIntent().getStringExtra("codigopadre"));
+    }
+
+    public void Seguimiento(View v){
+        Intent intento=new Intent(this, Seguimiento.class);
+        intento.putExtra("codigopadre2", this.getIntent().getStringExtra("codigopadre"));
+        startActivity(intento);
     }
 
 }

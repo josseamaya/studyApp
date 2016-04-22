@@ -11,19 +11,24 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.joseamaya.studyapp.Seguimiento"
     tools:showIn="@layout/activity_seguimiento"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:background="#b9f6ca">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_weight="0.11">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Seguimiento"
-            android:id="@+id/textView18" />
+            android:id="@+id/textView18"
+            android:textColor="#000000" />
     </LinearLayout>
 
     <LinearLayout
@@ -36,7 +41,8 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Buscar Alumno:"
-            android:id="@+id/textView19" />
+            android:id="@+id/textView19"
+            android:textColor="#000000" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -44,7 +50,16 @@
             android:inputType="number"
             android:ems="10"
             android:id="@+id/id_buscarAlumno"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textColor="#000000" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_buscar"
+            android:layout_weight="0.11"
+            android:src="@mipmap/search" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -58,81 +73,36 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Nombre:"
-            android:id="@+id/textView20" />
+            android:id="@+id/textView20"
+            android:textColor="#000000" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="45dp"
             android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/txt_nombre" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Buscar"
-            android:id="@+id/btn_buscar" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            android:id="@+id/textView29" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="243dp"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Código del alumno"
-            android:id="@+id/textView21" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/e_cod_alumno"
-            android:layout_weight="1" />
+            android:id="@+id/txt_nombre"
+            android:textColor="#000000" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Código del padre"
-            android:id="@+id/textView23" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/e_cod_padre"
-            android:layout_weight="1" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:layout_weight="0.09">
 
         <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Seguir"
-            android:id="@+id/btn_seguir" />
+            android:id="@+id/btn_seguir"
+            android:textColor="#000000" />
     </LinearLayout>
+
 </LinearLayout>
