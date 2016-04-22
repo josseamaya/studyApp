@@ -51,10 +51,12 @@ public class clases extends AppCompatActivity {
             }
         });
 
+        codigoMaestro=this.getIntent().getStringExtra("codigoMaestro2");
+
         TextView tvCodigoMaestroClase = (TextView) findViewById(R.id.textCodigoMaestroClase);
         tvCodigoMaestroClase.setText(this.getIntent().getStringExtra("codigoMaestro2"));
         TextView tvNombreMaestroClase = (TextView) findViewById(R.id.textNombreMaestroClase);
-        tvNombreMaestroClase.setText(this.getIntent().getStringExtra("nombreMaestro2"));
+        tvNombreMaestroClase.setText(codigoMaestro);
 
     }
     public void onClickClasesAgregar(View v){
@@ -63,8 +65,8 @@ public class clases extends AppCompatActivity {
         EditText cajaTextoClaseNombre =(EditText)findViewById(R.id.cajaTextoClasesNombre);
         EditText cajaTextoClaseHoario =(EditText)findViewById(R.id.cajaTextoClasesHoario);
 
-        hiloconexion.execute(INSERT_C, "3", cajaTextoClaseCodigo.getText().toString(), cajaTextoClaseNombre.getText().toString(), cajaTextoClaseHoario.getText().toString(),
-                this.getIntent().getStringExtra("codigoMaestro2"));
+        hiloconexion.execute(INSERT_C, "1", cajaTextoClaseCodigo.getText().toString(), cajaTextoClaseNombre.getText().toString(), cajaTextoClaseHoario.getText().toString(),
+               codigoMaestro);
 
     }
     public void onClickClasesCancelar(View v){
@@ -82,7 +84,7 @@ public class clases extends AppCompatActivity {
             URL url = null; // Url de donde queremos obtener información
             String devuelve = "";
 
-            if (params[1] == "3") {    // Ingresar maestros
+            if (params[1] == "1") {    // Ingresar maestros
 
                 try {
                     HttpURLConnection urlConn;
@@ -100,10 +102,10 @@ public class clases extends AppCompatActivity {
                     //Creo el Objeto JSON
                     JSONObject jsonParam = new JSONObject();
 
-                    jsonParam.put("cod_asignatura", params[2]);
-                    jsonParam.put("nombre", params[3]);
-                    jsonParam.put("horario", params[4]);
-                    jsonParam.put("cod_maestro", params[5]);
+                    jsonParam.put("cod_asignatura", params[1]);
+                    jsonParam.put("nombre", params[2]);
+                    jsonParam.put("horario", params[3]);
+                    jsonParam.put("cod_maestro", params[4]);
 
                     // Envio los parámetros post.
                     OutputStream os = urlConn.getOutputStream();
@@ -162,9 +164,9 @@ public class clases extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
-            int duration = Toast.LENGTH_SHORT;
+            /*int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, s, duration);
-            toast.show();
+            toast.show();*/
             super.onPostExecute(s);
         }
 
