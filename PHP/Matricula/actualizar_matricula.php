@@ -14,9 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $retorno = Matricula::update(
         $body['cod_maestro'],
         $body['cod_alumno'],
-        $body['cod_asignatura'],
-        $body['cod_maestro'],
-        $body['cod_alumno'],
         $body['cod_asignatura']
       );
 

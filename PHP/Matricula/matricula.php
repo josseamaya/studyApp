@@ -86,7 +86,7 @@ class Matricula
             " SET cod_maestro=?,
               cod_alumno=?,
               cod_asignatura=? " .
-            "WHERE cod_maestro=? AND cod_alumno=? AND cod_asignatura=?";
+            "WHERE cod_maestro=? and cod_alumno=? and cod_asignatura=? ";
 
  /*
  UPDATE matricula
