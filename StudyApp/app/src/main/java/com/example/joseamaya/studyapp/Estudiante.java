@@ -39,6 +39,7 @@ public class Estudiante extends AppCompatActivity {
 
     public void Ver_notas(View v){
         Intent intento=new Intent(this, Mostrar_notas.class);
+        intento.putExtra("codigoalumno2", this.getIntent().getStringExtra("codigoalumno"));
         startActivity(intento);
     }
 }

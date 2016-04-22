@@ -317,11 +317,11 @@ public class Matricularse extends AppCompatActivity implements View.OnClickListe
                             ((ListView) findViewById(R.id.listasignatura)).setAdapter(adapter);
 
 
-                            //seleccionar un dato de la lista
+                            /*seleccionar un dato de la lista
                             final ListView lista=(ListView)findViewById(R.id.listasignatura);
                             final TextView resul=(TextView)findViewById(R.id.textresul);
 
-                            /*assert lista != null;
+                            assert lista != null;
                             lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                                              public void onItemClick(AdapterView<?> customerAdapter, View footer, int selectedInt, long selectedLong) {
                                                                  String seleccion = (String) lista.getItemAtPosition(selectedInt);
