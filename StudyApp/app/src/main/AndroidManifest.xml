@@ -67,6 +67,10 @@
         <activity
             android:name=".IngresarNota"
             android:label="@string/title_activity_ingresar_nota"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Mostrar_notas"
+            android:label="@string/title_activity_mostrar_notas"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

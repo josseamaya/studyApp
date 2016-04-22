@@ -141,8 +141,8 @@ public class InicioSesion extends AppCompatActivity {
 
                                     if (i=="alumno"){
                                         Intent intent=new Intent(context, Estudiante.class);
+                                        intent.putExtra("codigoalumno", persona.getString("cod_alumno"));
                                         startActivity(intent);
-
                                     }
                                     if (i=="maestro"){
                                         Intent intent=new Intent(context, Maestro.class);

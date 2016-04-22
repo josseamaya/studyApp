@@ -47,6 +47,7 @@ import java.util.logging.Logger;
 public class Matricularse extends AppCompatActivity implements View.OnClickListener{
     EditText buscarid;
     EditText nombre;
+    EditText codigo_a;
     Button buscar;
     Button matricula;
 
@@ -54,9 +55,12 @@ public class Matricularse extends AppCompatActivity implements View.OnClickListe
     String IP = "http://studyaplication.esy.es";
     // Rutas de los Web Services
     String GET_BY_ID = IP + "/obtener_maestro_por_id.php";
+    String INSERT_M = IP + "/insertar_matricula.php";
 
     ObtenerWebService hiloconexion;
 
+    String codigoalumno;
+    String cod_asig;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,29 +84,51 @@ public class Matricularse extends AppCompatActivity implements View.OnClickListe
         buscar=(Button) findViewById(R.id.buttonbus);
         //asignatura=(ListView)findViewById(R.id.listasignatura);
         matricula=(Button)findViewById(R.id.buttonmatric);
+        codigo_a=(EditText)findViewById(R.id.editcodA);
 
         //Listener de los botones
         buscar.setOnClickListener(this);
         matricula.setOnClickListener(this);
 
-        //insertar id
-        String cod_asig = this.getIntent().getStringExtra("id");
-        TextView id= (TextView) findViewById(R.id.textresultado);
-        id.setText(cod_asig);
 
+        codigoalumno=this.getIntent().getStringExtra("codigoalumno2");
+
+        TextView cod_alumno = (TextView) findViewById(R.id.cod_alumno2);
+        cod_alumno.setText(codigoalumno);
 
     }
 
     @Override
     public void onClick(View v) {
-
+        final Context context=this;
         if (v.getId() == R.id.buttonbus) {
             hiloconexion = new ObtenerWebService();
             String cadenallamada = GET_BY_ID + "?cod_maestro=" + buscarid.getText().toString();
             hiloconexion.execute(cadenallamada,"1");   // Parámetros que recibe doInBackground
             obtenerJson();
+
+        }else if(v.getId()==R.id.buttonmatric){
+            /*insertar id
+            cod_asig = this.getIntent().getStringExtra("id");
+            TextView id= (TextView) findViewById(R.id.textresul);
+            id.setText(cod_asig);*/
+            if(codigo_a.getText().toString().isEmpty() || buscarid.getText().toString().isEmpty()){
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, "Ingrese todos los datos", duration);
+                toast.show();
+            }else{
+                hiloconexion = new ObtenerWebService();
+                hiloconexion.execute(INSERT_M, "2", buscarid.getText().toString(),codigoalumno , codigo_a.getText().toString());   // Parámetros que recibe doInBackground
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, "Matricula Ingresada", duration);
+                toast.show();
+            }
+
         }
+
     }
+
+
 
     public class ObtenerWebService extends AsyncTask<String,Void,String> {
 
@@ -167,7 +193,72 @@ public class Matricularse extends AppCompatActivity implements View.OnClickListe
                 return devuelve;
 
 
-            } else if (params[1] == "2") {    // consulta
+            } else if (params[1] == "2") {    // guardar matricula
+                try {
+                    HttpURLConnection urlConn;
+
+                    DataOutputStream printout;
+                    DataInputStream input;
+                    url = new URL(cadena);
+                    urlConn = (HttpURLConnection) url.openConnection();
+                    urlConn.setDoInput(true);
+                    urlConn.setDoOutput(true);
+                    urlConn.setUseCaches(false);
+                    urlConn.setRequestProperty("Content-Type", "application/json");
+                    urlConn.setRequestProperty("Accept", "application/json");
+                    urlConn.connect();
+                    //Creo el Objeto JSON
+                    JSONObject jsonParam = new JSONObject();
+
+                    jsonParam.put("cod_maestro", params[2]);
+                    jsonParam.put("cod_alumno", params[3]);
+                    jsonParam.put("cod_asignatura", params[4]);
+                    // Envio los parámetros post.
+                    OutputStream os = urlConn.getOutputStream();
+                    BufferedWriter writer = new BufferedWriter(
+                            new OutputStreamWriter(os, "UTF-8"));
+                    writer.write(jsonParam.toString());
+                    writer.flush();
+                    writer.close();
+
+                    int respuesta = urlConn.getResponseCode();
+
+
+                    StringBuilder result = new StringBuilder();
+
+                    if (respuesta == HttpURLConnection.HTTP_OK) {
+
+                        String line;
+                        BufferedReader br = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
+                        while ((line = br.readLine()) != null) {
+                            result.append(line);
+                            //response+=line;
+                        }
+
+                        //Creamos un objeto JSONObject para poder acceder a los atributos (campos) del objeto.
+                        JSONObject respuestaJSON = new JSONObject(result.toString());   //Creo un JSONObject a partir del StringBuilder pasado a cadena
+                        //Accedemos al vector de resultados
+
+                        String resultJSON = respuestaJSON.getString("estado");   // estado es el nombre del campo en el JSON
+
+                        if (resultJSON == "1") {      // hay un padre que mostrar
+                            devuelve = "Matricula realizada correctamente";
+
+                        } else if (resultJSON == "2") {
+                            devuelve = "No se pudo realizar la matricula";
+                        }
+
+                    }
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                return devuelve;
 
             } else if (params[1] == "3") {    // insert
 
@@ -227,10 +318,10 @@ public class Matricularse extends AppCompatActivity implements View.OnClickListe
 
 
                             //seleccionar un dato de la lista
-                            /*final ListView lista=(ListView)findViewById(R.id.listasignatura);
-                            final TextView resul=(TextView)findViewById(R.id.textresultado);
+                            final ListView lista=(ListView)findViewById(R.id.listasignatura);
+                            final TextView resul=(TextView)findViewById(R.id.textresul);
 
-                            assert lista != null;
+                            /*assert lista != null;
                             lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                                              public void onItemClick(AdapterView<?> customerAdapter, View footer, int selectedInt, long selectedLong) {
                                                                  String seleccion = (String) lista.getItemAtPosition(selectedInt);

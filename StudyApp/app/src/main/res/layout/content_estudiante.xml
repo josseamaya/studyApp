@@ -26,6 +26,13 @@
             android:layout_weight="0.61" />
     </LinearLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/cod_alumno" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -48,7 +55,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Notas"
-            android:id="@+id/estudianteBotonNotas" />
+            android:id="@+id/estudianteBotonNotas"
+            android:onClick="Ver_notas"/>
     </LinearLayout>
 
     <LinearLayout

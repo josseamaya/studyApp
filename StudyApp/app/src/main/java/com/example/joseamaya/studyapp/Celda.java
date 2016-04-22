@@ -40,6 +40,7 @@ public class Celda  extends ArrayAdapter<JSONObject> {
         }
         TextView nombre=(TextView) celda.findViewById(R.id.textnombre);
         final TextView horario=(TextView) celda.findViewById(R.id.texthora);
+        TextView codigo=(TextView) celda.findViewById(R.id.textcod);
 
         JSONObject elemento=this.getItem(position);
 
@@ -47,16 +48,17 @@ public class Celda  extends ArrayAdapter<JSONObject> {
             nombre.setText(elemento.getString("nombre"));
             horario.setText(elemento.getString("horario"));
 
-            final String id=elemento.getString("cod_asignatura");
+            codigo.setText(elemento.getString("cod_asignatura"));
 
-            celda.setOnTouchListener(new View.OnTouchListener() {
+
+            /*celda.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     Intent intent =new Intent(getContext(), Matricularse.class);
                     intent.putExtra("id", id);
                     return false;
                 }
-            });
+            });*/
 
 
 

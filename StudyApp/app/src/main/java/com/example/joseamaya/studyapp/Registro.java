@@ -1,5 +1,6 @@
 package com.example.joseamaya.studyapp;
 
+import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -108,17 +110,40 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
+        final Context context=this;
         if (v.getId() == R.id.button) {
             hiloconexion = new ObtenerWebService();
             if (maestro.isChecked() == true) {
-                hiloconexion.execute(INSERT_M, "3", nombre.getText().toString(), apellido.getText().toString(), correo.getText().toString(),
-                        telefono.getText().toString(), contraseña.getText().toString());   // Parámetros que recibe doInBackground
+                if(nombre.getText().toString().isEmpty() || correo.getText().toString().isEmpty() || contraseña.getText().toString().isEmpty()){
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, "Ingrese todos los datos", duration);
+                    toast.show();
+                }else{
+                    hiloconexion.execute(INSERT_M, "3", nombre.getText().toString(), apellido.getText().toString(), correo.getText().toString(),
+                            telefono.getText().toString(), contraseña.getText().toString());   // Parámetros que recibe doInBackground
+                }
+
             } else if (estudiante.isChecked() == true) {
-                hiloconexion.execute(INSERT_E, "2", nombre.getText().toString(), apellido.getText().toString(), correo.getText().toString(),
-                        telefono.getText().toString(), contraseña.getText().toString());   // Parámetros que recibe doInBackground
+                if(nombre.getText().toString().isEmpty() || correo.getText().toString().isEmpty() || contraseña.getText().toString().isEmpty()){
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, "Ingrese todos los datos", duration);
+                    toast.show();
+                }else {
+                    hiloconexion.execute(INSERT_E, "2", nombre.getText().toString(), apellido.getText().toString(), correo.getText().toString(),
+                            telefono.getText().toString(), contraseña.getText().toString());   // Parámetros que recibe doInBackground
+                }
             } else if (padre.isChecked() == true) {
-                hiloconexion.execute(INSERT_P, "1", nombre.getText().toString(), apellido.getText().toString(), correo.getText().toString(),
-                        telefono.getText().toString(), contraseña.getText().toString());   // Parámetros que recibe doInBackground
+                if(nombre.getText().toString().isEmpty() || correo.getText().toString().isEmpty() || contraseña.getText().toString().isEmpty()){
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, "Ingrese todos los datos", duration);
+                    toast.show();
+                }else {
+                    hiloconexion.execute(INSERT_P, "1", nombre.getText().toString(), apellido.getText().toString(), correo.getText().toString(),
+                            telefono.getText().toString(), contraseña.getText().toString());   // Parámetros que recibe doInBackground
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, "Se registro correctamente", duration);
+                    toast.show();
+                }
             }
 
         }

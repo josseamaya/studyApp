@@ -23,6 +23,13 @@
         android:layout_weight="0.07"
         android:layout_gravity="center_horizontal"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/cod_alumno2" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -89,7 +96,7 @@
         android:layout_weight="0.10">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="127dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Asignatura:"
@@ -98,17 +105,30 @@
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="113dp"
-            android:id="@+id/listasignatura" />
+            android:id="@+id/listasignatura"
+            />
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/textresultado"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="0.07" />
+        android:layout_weight="0.06"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="149dp"
+            android:layout_height="37dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Cod. Asignatura"
+            android:id="@+id/textresul" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editcodA" />
+    </LinearLayout>
 
     <Button
         style="?android:attr/buttonStyleSmall"
