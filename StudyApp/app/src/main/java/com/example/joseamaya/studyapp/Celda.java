@@ -1,7 +1,9 @@
 package com.example.joseamaya.studyapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -26,6 +28,7 @@ public class Celda  extends ArrayAdapter<JSONObject> {
         super (context, resource, items);
     }
 
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
 
@@ -36,13 +39,26 @@ public class Celda  extends ArrayAdapter<JSONObject> {
 
         }
         TextView nombre=(TextView) celda.findViewById(R.id.textnombre);
-        TextView horario=(TextView) celda.findViewById(R.id.texthora);
+        final TextView horario=(TextView) celda.findViewById(R.id.texthora);
 
         JSONObject elemento=this.getItem(position);
 
         try {
             nombre.setText(elemento.getString("nombre"));
             horario.setText(elemento.getString("horario"));
+
+            final String id=elemento.getString("cod_asignatura");
+
+            celda.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    Intent intent =new Intent(getContext(), Matricularse.class);
+                    intent.putExtra("id", id);
+                    return false;
+                }
+            });
+
+            
 
         }catch(JSONException e){
             e.printStackTrace();

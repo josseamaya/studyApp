@@ -48,7 +48,6 @@ public class Matricularse extends AppCompatActivity implements View.OnClickListe
     EditText buscarid;
     EditText nombre;
     Button buscar;
-    //ListView asignatura;
     Button matricula;
 
     // IP de mi Url
@@ -86,6 +85,10 @@ public class Matricularse extends AppCompatActivity implements View.OnClickListe
         buscar.setOnClickListener(this);
         matricula.setOnClickListener(this);
 
+        //insertar id
+        String cod_asig = this.getIntent().getStringExtra("id");
+        TextView id= (TextView) findViewById(R.id.textresultado);
+        id.setText(cod_asig);
 
 
     }
@@ -222,8 +225,9 @@ public class Matricularse extends AppCompatActivity implements View.OnClickListe
                             final Celda adapter = new Celda(context, 0, dataSource);
                             ((ListView) findViewById(R.id.listasignatura)).setAdapter(adapter);
 
+
                             //seleccionar un dato de la lista
-                            final ListView lista=(ListView)findViewById(R.id.listasignatura);
+                            /*final ListView lista=(ListView)findViewById(R.id.listasignatura);
                             final TextView resul=(TextView)findViewById(R.id.textresultado);
 
                             assert lista != null;
@@ -234,7 +238,7 @@ public class Matricularse extends AppCompatActivity implements View.OnClickListe
                                                              }
                                                          }
 
-                                );
+                                );*/
 
 
                             }catch (JSONException e) {
