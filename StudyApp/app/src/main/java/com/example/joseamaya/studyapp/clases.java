@@ -33,7 +33,7 @@ public class clases extends AppCompatActivity {
     ObtenerWebService hiloconexion;
     Context context=null;
 
-    String codigoMaestro=null;
+    String codigoMaestro, nombreMaestro=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,11 +52,12 @@ public class clases extends AppCompatActivity {
         });
 
         codigoMaestro=this.getIntent().getStringExtra("codigoMaestro2");
+        nombreMaestro=this.getIntent().getStringExtra("nombreMaestro2");
 
         TextView tvCodigoMaestroClase = (TextView) findViewById(R.id.textCodigoMaestroClase);
-        tvCodigoMaestroClase.setText(this.getIntent().getStringExtra("codigoMaestro2"));
+        tvCodigoMaestroClase.setText(codigoMaestro);
         TextView tvNombreMaestroClase = (TextView) findViewById(R.id.textNombreMaestroClase);
-        tvNombreMaestroClase.setText(codigoMaestro);
+        tvNombreMaestroClase.setText(nombreMaestro);
 
     }
     public void onClickClasesAgregar(View v){
@@ -67,6 +68,10 @@ public class clases extends AppCompatActivity {
 
         hiloconexion.execute(INSERT_C, "1", cajaTextoClaseCodigo.getText().toString(), cajaTextoClaseNombre.getText().toString(), cajaTextoClaseHoario.getText().toString(),
                codigoMaestro);
+
+        cajaTextoClaseCodigo.setText("");
+        cajaTextoClaseNombre.setText("");
+        cajaTextoClaseHoario.setText("");
 
     }
     public void onClickClasesCancelar(View v){
@@ -102,10 +107,10 @@ public class clases extends AppCompatActivity {
                     //Creo el Objeto JSON
                     JSONObject jsonParam = new JSONObject();
 
-                    jsonParam.put("cod_asignatura", params[1]);
-                    jsonParam.put("nombre", params[2]);
-                    jsonParam.put("horario", params[3]);
-                    jsonParam.put("cod_maestro", params[4]);
+                    jsonParam.put("cod_asignatura", params[2]);
+                    jsonParam.put("nombre", params[3]);
+                    jsonParam.put("horario", params[4]);
+                    jsonParam.put("cod_maestro", params[5]);
 
                     // Envio los parámetros post.
                     OutputStream os = urlConn.getOutputStream();
@@ -136,6 +141,7 @@ public class clases extends AppCompatActivity {
                         if (resultJSON == "1") {      // hay un Maestro que mostrar
                             devuelve = "Clase agregada";
 
+
                         } else if (resultJSON == "2") {
                             devuelve = "La clase no pude agregarse";
                         }
@@ -164,9 +170,9 @@ public class clases extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
-            /*int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, s, duration);
-            toast.show();*/
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, "Asignatura Agregada Correctamente", duration);
+            toast.show();
             super.onPostExecute(s);
         }
 
