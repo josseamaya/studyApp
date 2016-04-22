@@ -58,7 +58,7 @@ public class Celda  extends ArrayAdapter<JSONObject> {
                 }
             });
 
-            
+
 
         }catch(JSONException e){
             e.printStackTrace();
