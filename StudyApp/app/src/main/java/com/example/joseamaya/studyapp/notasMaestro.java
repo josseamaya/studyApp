@@ -63,8 +63,19 @@ public class notasMaestro extends AppCompatActivity {
         tvNotasNombre.setText(nombreMaestro);
 
         obtenerCodigosAlumnos("http://studyaplication.esy.es/obtener_matricula.php", codigoMaestro);
-        //obtenerNombreAsignaturas("http://studyaplication.esy.es/obtener_asignatura.php");
-        //obtenerAlumnosFiltrados("http://studyaplication.esy.es/obtener_alumno.php");
+
+        try {
+            Thread.sleep(1000);                 //1000 milliseconds is one second.
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+        obtenerNombreAsignaturas("http://studyaplication.esy.es/obtener_asignatura.php");
+        try {
+            Thread.sleep(1000);                 //1000 milliseconds is one second.
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+        obtenerAlumnosFiltrados("http://studyaplication.esy.es/obtener_alumno.php");
 
         ListView lv2 = (ListView) findViewById(R.id.listaAlumnosNotas);
         lv2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -274,6 +285,11 @@ public class notasMaestro extends AppCompatActivity {
 
     public void onClickNotasCancelar(View v){
         obtenerNombreAsignaturas("http://studyaplication.esy.es/obtener_asignatura.php");
+        try {
+            Thread.sleep(1000);                 //1000 milliseconds is one second.
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
         obtenerAlumnosFiltrados("http://studyaplication.esy.es/obtener_alumno.php");
 
         /*for (int i=1;i<=arrayListCodigosAlumno.size();i++) {

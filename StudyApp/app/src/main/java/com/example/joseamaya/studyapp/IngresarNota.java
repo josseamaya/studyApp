@@ -28,16 +28,16 @@ public class IngresarNota extends AppCompatActivity {
         });
 
         TextView tvCodigoAsinatura = (TextView)findViewById(R.id.textIngresarNotasCodigoAlumno);
-        tvCodigoAsinatura.setText(this.getIntent().getStringExtra("codigoAsignatura"));
+        tvCodigoAsinatura.setText(this.getIntent().getStringExtra("codigoAlumno"));
 
         TextView tvNombreAsinatura = (TextView)findViewById(R.id.textIngresarNotasNombreAlumno);
-        tvNombreAsinatura.setText(this.getIntent().getStringExtra("nombreAsignatura"));
+        tvNombreAsinatura.setText(this.getIntent().getStringExtra("nombreAlumno"));
 
         TextView tvCodigoAlumno = (TextView)findViewById(R.id.textIngresarNotasCodigoAsignatura);
-        tvCodigoAlumno.setText(this.getIntent().getStringExtra("codigoAlumno"));
+        tvCodigoAlumno.setText(this.getIntent().getStringExtra("codigoAsignatura"));
 
         TextView tvNombreAlumno = (TextView)findViewById(R.id.textIngresarNotasNombreAsignatura);
-        tvNombreAlumno.setText(this.getIntent().getStringExtra("nombreAlumno"));
+        tvNombreAlumno.setText(this.getIntent().getStringExtra("nombreAsignatura"));
 
 
     }
