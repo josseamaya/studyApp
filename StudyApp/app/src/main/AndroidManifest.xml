@@ -55,6 +55,10 @@
         <activity
             android:name=".Matricularse"
             android:label="@string/title_activity_matricularse"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".clases"
+            android:label="@string/title_activity_clases"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

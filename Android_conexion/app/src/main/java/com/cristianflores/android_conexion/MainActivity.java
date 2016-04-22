@@ -98,21 +98,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 hiloconexion = new ObtenerWebService();
                 String cadenallamada = GET_BY_ID + "?cod_maestro=" + e_cod_maestro.getText().toString();
                 hiloconexion.execute(cadenallamada,"2");   // Parámetros que recibe doInBackground
-
-
+                
                 break;
             case R.id.insertar:
 
-                hiloconexion = new ObtenerWebService();
-                hiloconexion.execute(INSERT,"3",e_cod_maestro.getText().toString(),e_nombre.getText().toString());   // Parámetros que recibe doInBackground
-
+                   // Parámetros que recibe doInBackground
 
                 break;
             case R.id.actualizar:
 
                 hiloconexion = new ObtenerWebService();
                 hiloconexion.execute(UPDATE,"4",e_cod_maestro.getText().toString(),e_nombre.getText().toString(),e_apellido.getText().toString());   // Parámetros que recibe doInBackground
-
 
                 break;
             case R.id.borrar:
@@ -277,6 +273,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     urlConn.setRequestProperty("Content-Type", "application/json");
                     urlConn.setRequestProperty("Accept", "application/json");
                     urlConn.connect();
+
                     //Creo el Objeto JSON
                     JSONObject jsonParam = new JSONObject();
                     jsonParam.put("cod_maestro", params[2]);

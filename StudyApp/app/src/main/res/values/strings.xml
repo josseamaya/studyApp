@@ -7,4 +7,5 @@
     <string name="title_activity_padres">Padres</string>
     <string name="title_activity_inicio_sesion">InicioSesion</string>
     <string name="title_activity_matricularse">Matricularse</string>
+    <string name="title_activity_clases">clases</string>
 </resources>

@@ -84,18 +84,19 @@ public class InicioSesion extends AppCompatActivity {
     }
     public void obtenerJson(String c, final String i){
         final Context context=this;
+        final String individuo=i;
         JsonObjectRequest jor= new JsonObjectRequest(
                 c,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        String estudiantes = null;
+                        String personas = null;
 
                         try {
-                            estudiantes = response.getString(i);
-                            JSONArray arregloAlunos = new JSONArray(estudiantes);
+                            personas = response.getString(i);
+                            JSONArray arregloAlunos = new JSONArray(personas);
 
-                            JSONObject estudiante=null;
+                            JSONObject persona=null;
 
                             TextView tvCorreo=(TextView)findViewById(R.id.inicioTextoCorreo);
 
@@ -104,13 +105,17 @@ public class InicioSesion extends AppCompatActivity {
 
                             for (int i=0;i<=arregloAlunos.length()-1;i++)
                             {
-                                 estudiante = (JSONObject) arregloAlunos.get(i);
-                                 String correo = estudiante.getString("email");
+                                persona = (JSONObject) arregloAlunos.get(i);
+                                String correo = persona.getString("email");
+
+
                                 if (correo.equals(tvCorreo.getText().toString()))
                                 {
-                                    contrasena = estudiante.getString("password");
+                                    contrasena = persona.getString("password");
+
                                     verificador=true;
-                                 break;
+
+                                    break;
                                 }
                                 else
                                 {
@@ -141,6 +146,8 @@ public class InicioSesion extends AppCompatActivity {
                                     }
                                     if (i=="maestro"){
                                         Intent intent=new Intent(context, Maestro.class);
+                                        intent.putExtra("codigoMaestro", persona.getString("cod_maestro"));
+                                        intent.putExtra("nombreMaestro", persona.getString("nombre"));
                                         startActivity(intent);
 
                                     }

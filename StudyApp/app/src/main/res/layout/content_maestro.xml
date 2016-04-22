@@ -24,6 +24,43 @@
             android:layout_height="match_parent"
             android:id="@+id/maestroImagen"
             android:layout_weight="0.61" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Codigo: "
+            android:id="@+id/textView13" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0000"
+            android:id="@+id/textCodigoMaestro" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Codigo: "
+            android:id="@+id/Nombre:" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre Ejemplo"
+            android:id="@+id/textNombreMaestro" />
     </LinearLayout>
 
     <LinearLayout
@@ -35,7 +72,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Agregar Clases"
-            android:id="@+id/maestroBotonClases" />
+            android:id="@+id/maestroBotonClases"
+            android:onClick="onClickMaestroClases" />
     </LinearLayout>
 
     <LinearLayout

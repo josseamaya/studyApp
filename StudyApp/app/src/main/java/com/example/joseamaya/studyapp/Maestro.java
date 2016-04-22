@@ -1,11 +1,13 @@
 package com.example.joseamaya.studyapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 public class Maestro extends AppCompatActivity {
 
@@ -24,6 +26,17 @@ public class Maestro extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        TextView tvCodigoMaestro = (TextView)findViewById(R.id.textCodigoMaestro);
+        tvCodigoMaestro.setText(this.getIntent().getStringExtra("codigoMaestro"));
+        TextView tvNombreMaestro = (TextView)findViewById(R.id.textNombreMaestro);
+        tvNombreMaestro.setText(this.getIntent().getStringExtra("nombreMaestro"));
+    }
+    public void onClickMaestroClases(View v) {
+        Intent intent=new Intent(this, clases.class);
+        intent.putExtra("codigoMaestro2", this.getIntent().getStringExtra("codigoMaestro"));
+        intent.putExtra("nombreMaestro2", this.getIntent().getStringExtra("nombreMaestro"));
+        startActivity(intent);
     }
 
 }
