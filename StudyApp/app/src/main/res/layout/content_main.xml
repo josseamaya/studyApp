@@ -15,10 +15,27 @@
     android:weightSum="1"
     android:background="#64b5f6">
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="117dp"
+        android:layout_weight="0.14"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="StudyApp"
+            android:id="@+id/textView6"
+            android:textSize="80dp" />
+    </LinearLayout>
+
     <FrameLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="220dp">
+        android:layout_height="220dp"
+        android:layout_gravity="center_horizontal">
 
         <ImageView
             android:layout_width="match_parent"

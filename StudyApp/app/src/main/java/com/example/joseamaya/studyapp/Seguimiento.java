@@ -56,6 +56,8 @@ public class Seguimiento extends AppCompatActivity implements View.OnClickListen
         btn_seguir=(Button)findViewById(R.id.btn_seguir);
         btn_buscar=(ImageButton)findViewById(R.id.btn_buscar);
 
+        setTitle("Seguimiento de Alumno");
+
         //Listener de los botones
         btn_buscar.setOnClickListener(this);
         btn_seguir.setOnClickListener(this);

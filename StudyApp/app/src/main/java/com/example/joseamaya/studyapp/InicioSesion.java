@@ -153,6 +153,7 @@ public class InicioSesion extends AppCompatActivity {
                                     if (i=="padre"){
                                         Intent intent=new Intent(context, Padres.class);
                                         intent.putExtra("codigopadre", persona.getString("cod_padre"));
+                                        intent.putExtra("nombrepadre", persona.getString("nombre"));
                                         startActivity(intent);
 
                                     }

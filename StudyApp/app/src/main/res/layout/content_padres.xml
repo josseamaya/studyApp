@@ -12,9 +12,10 @@
     tools:context="com.example.joseamaya.studyapp.Padres"
     tools:showIn="@layout/activity_padres"
     android:orientation="vertical"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="#64b5f6">
 
-    <LinearLayout
+    <FrameLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="222dp"
@@ -22,19 +23,47 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/padreImagen"
-            android:layout_weight="0.61" />
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView7"
+            android:layout_gravity="center"
+            android:background="@drawable/papa" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="92dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/cod_padre"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.13"
+            android:gravity="center_horizontal" />
     </LinearLayout>
 
-    <TextView
-        android:layout_width="92dp"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Small Text"
-        android:id="@+id/cod_padre"
-        android:layout_gravity="bottom"
-        android:layout_weight="0.13" />
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal" >
+
+        <TextView
+            android:layout_width="92dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/nom_padre"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.13"
+            android:gravity="center_horizontal" />
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
