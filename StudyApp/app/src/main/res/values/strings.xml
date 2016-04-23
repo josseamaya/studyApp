@@ -12,4 +12,5 @@
     <string name="title_activity_ingresar_nota">IngresarNota</string>
     <string name="title_activity_mostrar_notas">Mostrar_notas</string>
     <string name="title_activity_seguimiento">Seguimiento</string>
+    <string name="title_activity_notas_padre">Notas_padre</string>
 </resources>

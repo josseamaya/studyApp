@@ -50,6 +50,19 @@
     </LinearLayout>
 
     <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Notas"
+            android:id="@+id/padreBotonNotas"
+            android:onClick="Notas_padre" />
+    </LinearLayout>
+
+    <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -59,18 +72,6 @@
             android:layout_height="wrap_content"
             android:text="Recursos"
             android:id="@+id/padreBotonRecursos" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Notas"
-            android:id="@+id/padreBotonNotas" />
     </LinearLayout>
 
     <LinearLayout
