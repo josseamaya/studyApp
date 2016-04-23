@@ -17,7 +17,9 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -36,13 +38,8 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.16">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nombre Maestro: "
-            android:id="@+id/textView15" />
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -50,6 +47,19 @@
             android:text="Nombre"
             android:id="@+id/textNombreMaestroClase" />
     </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="144dp"
+        android:layout_weight="0.18">
+
+        <ImageView
+            android:layout_width="380dp"
+            android:layout_height="180dp"
+            android:id="@+id/imageView4"
+            android:layout_gravity="center"
+            android:background="@drawable/asignaturas" />
+    </FrameLayout>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -59,7 +69,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Codigo Clase"
+            android:text="Codigo Asignatura"
             android:id="@+id/textView17" />
     </LinearLayout>
 
@@ -114,7 +124,8 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_weight="0.12">
 
         <EditText
             android:layout_width="wrap_content"
@@ -126,21 +137,19 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:weightSum="1">
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Agregar"
             android:id="@+id/botonClasesAceptar"
-            android:onClick="onClickClasesAgregar" />
+            android:onClick="onClickClasesAgregar"
+            android:layout_weight="1.01"
+            android:background="#3f51b5"
+            android:textColor="#ffffff" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cancelar"
-            android:id="@+id/botonClasesCancelar"
-            android:onClick="onClickClasesCancelar" />
     </LinearLayout>
 
 </LinearLayout>

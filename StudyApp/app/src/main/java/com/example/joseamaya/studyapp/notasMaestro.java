@@ -44,15 +44,7 @@ public class notasMaestro extends AppCompatActivity {
 
         context=this;
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
+        setTitle("Lista de Alumnos");
 
         codigoMaestro=this.getIntent().getStringExtra("codigoMaestro3");
         nombreMaestro=this.getIntent().getStringExtra("nombreMaestro3");
@@ -84,10 +76,6 @@ public class notasMaestro extends AppCompatActivity {
                 TextView textView1 = (TextView) view.findViewById(R.id.textCeldaComplejaCodigoAsignatura);
                 final String codigoAsignatura = (String) textView1.getText();
 
-                TextView textView2 = (TextView) view.findViewById(R.id.textCeldaComplejaAlumnosAsignatura);
-                final String nombreAsignatura = (String) textView2.getText();
-
-
                 TextView textView3 = (TextView) view.findViewById(R.id.textCeldaComplejaAlumnosCodigo);
                 final String codigoAlumno = (String) textView3.getText();
 
@@ -97,7 +85,6 @@ public class notasMaestro extends AppCompatActivity {
 
                 Intent intent = new Intent(context, IngresarNota.class);
                 intent.putExtra("codigoAsignatura", codigoAsignatura);
-                intent.putExtra("nombreAsignatura", nombreAsignatura);
 
                 intent.putExtra("codigoAlumno", codigoAlumno);
                 intent.putExtra("nombreAlumno", nombreAlumno);

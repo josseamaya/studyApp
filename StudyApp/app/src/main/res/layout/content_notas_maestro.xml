@@ -11,17 +11,20 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.joseamaya.studyapp.notasMaestro"
     tools:showIn="@layout/activity_notas_maestro"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="1">
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Codigo: "
+            android:text="Codigo : "
             android:id="@+id/textView18" />
 
         <TextView
@@ -34,13 +37,9 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="30dp" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nombre: "
-            android:id="@+id/textView20" />
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -52,11 +51,12 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="291dp">
+        android:layout_height="291dp"
+        android:layout_weight="0.81">
 
         <ListView
             android:layout_width="wrap_content"
-            android:layout_height="271dp"
+            android:layout_height="match_parent"
             android:id="@+id/listaAlumnosNotas" />
     </LinearLayout>
 
@@ -71,6 +71,8 @@
             android:layout_height="wrap_content"
             android:text="Cargar Alumnos"
             android:id="@+id/botonCancelarIngresarNotas"
-            android:onClick="onClickNotasCancelar" />
+            android:onClick="onClickNotasCancelar"
+            android:background="#3f51b5"
+            android:textColor="#ffffff" />
     </LinearLayout>
 </LinearLayout>
