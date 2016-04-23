@@ -75,21 +75,26 @@ public class Seguimiento extends AppCompatActivity implements View.OnClickListen
         switch (v.getId()){
 
             case R.id.btn_buscar:
-
                 hiloconexion = new ObtenerWebService();
                 String cadenallamada = GET_BY_ID + "?cod_alumno=" + id_buscarAlumno.getText().toString();
                 hiloconexion.execute(cadenallamada, "2");   // Parámetros que recibe doInBackground
 
                 break;
             case R.id.btn_seguir:
+                if (id_buscarAlumno.getText().toString().isEmpty())
+                {
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, "Complete el campo de busqueda", duration);
+                    toast.show();
+                }
+                else {
+                    hiloconexion = new ObtenerWebService();
+                    hiloconexion.execute(INSERT, "3", ingresar_cod_padre, id_buscarAlumno.getText().toString());   // Parámetros que recibe doInBackground
 
-                hiloconexion = new ObtenerWebService();
-                hiloconexion.execute(INSERT, "3", ingresar_cod_padre, id_buscarAlumno.getText().toString());   // Parámetros que recibe doInBackground
-
-                int duration = Toast.LENGTH_SHORT;
-                Toast toast = Toast.makeText(context, "Seguimiento realizado correctamente", duration);
-                toast.show();
-
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, "Seguimiento realizado correctamente", duration);
+                    toast.show();
+                }
                 break;
             default:
 
