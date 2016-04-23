@@ -92,7 +92,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Recursos"
-            android:id="@+id/estudianteBotonRecursos" />
+            android:id="@+id/estudianteBotonRecursos"
+            android:onClick="Ver_recursos"/>
     </LinearLayout>
 
     <LinearLayout

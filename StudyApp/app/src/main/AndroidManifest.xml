@@ -79,6 +79,10 @@
         <activity
             android:name=".Notas_padre"
             android:label="@string/title_activity_notas_padre"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Recursos"
+            android:label="@string/title_activity_recursos"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

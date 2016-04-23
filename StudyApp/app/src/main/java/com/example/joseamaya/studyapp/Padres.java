@@ -38,4 +38,9 @@ public class Padres extends AppCompatActivity {
         startActivity(intento);
     }
 
+    public void Ver_recursosP(View v){
+        Intent intento=new Intent(this, Recursos.class);
+        startActivity(intento);
+    }
+
 }

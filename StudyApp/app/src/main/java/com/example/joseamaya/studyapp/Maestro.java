@@ -38,4 +38,9 @@ public class Maestro extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void Ver_recursosM(View v){
+        Intent intento=new Intent(this, Recursos.class);
+        startActivity(intento);
+    }
+
 }
