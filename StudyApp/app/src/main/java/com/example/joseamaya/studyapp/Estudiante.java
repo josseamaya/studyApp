@@ -22,6 +22,8 @@ public class Estudiante extends AppCompatActivity {
 
         TextView tvCodigoMaestro = (TextView)findViewById(R.id.cod_alumno);
         tvCodigoMaestro.setText(this.getIntent().getStringExtra("codigoalumno"));
+        TextView tv2 = (TextView)findViewById(R.id.nom_alumno);
+        tv2.setText(this.getIntent().getStringExtra("nombrealumno"));
     }
 
     public void Matricula(View v){

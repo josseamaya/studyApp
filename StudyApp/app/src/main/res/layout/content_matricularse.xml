@@ -17,30 +17,21 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Matricularse"
-        android:id="@+id/textView7"
-        android:layout_weight="0.07"
-        android:layout_gravity="center_horizontal"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Small Text"
-        android:id="@+id/cod_alumno2" />
+        android:id="@+id/cod_alumno2"
+        android:layout_gravity="center_horizontal" />
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.09">
+        android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Buscar Maestro:"
+            android:text="Codigo Maestro:"
             android:id="@+id/textView10" />
 
         <EditText
@@ -81,11 +72,13 @@
 
         <Button
             style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Buscar"
+            android:text="Buscar Maestro"
             android:id="@+id/buttonbus"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            android:background="#3f51b5"
+            android:textColor="#ffffff" />
     </LinearLayout>
 
     <LinearLayout
@@ -93,14 +86,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="0.10">
+        android:gravity="center_horizontal">
 
         <TextView
-            android:layout_width="127dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Asignatura:"
-            android:id="@+id/textView11" />
+            android:text="Asignaturas"
+            android:id="@+id/textView11"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:layout_weight="0.67">
 
         <ListView
             android:layout_width="wrap_content"
@@ -121,7 +123,7 @@
             android:layout_width="149dp"
             android:layout_height="37dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Cod. Asignatura"
+            android:text="Codigo Asignatura"
             android:id="@+id/textresul" />
 
         <EditText
@@ -132,10 +134,12 @@
 
     <Button
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Matricularse"
         android:id="@+id/buttonmatric"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ffffff"
+        android:background="#3f51b5" />
 
 </LinearLayout>

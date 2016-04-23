@@ -8,58 +8,30 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="1">
+        android:layout_gravity="center_horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Codigo"
-            android:id="@+id/textView19"
-            android:layout_weight="0.72" />
-
-        <TextView
-            android:layout_width="115dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Nombre"
-            android:id="@+id/textView13"
-            android:layout_weight="0.17" />
-
-        <TextView
-            android:layout_width="118dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Horario"
-            android:id="@+id/textView15" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.05">
-
-        <TextView
-            android:layout_width="128dp"
+            android:layout_width="111dp"
             android:layout_height="32dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
-            android:id="@+id/textcod" />
+            android:id="@+id/textcod"
+            android:textSize="16dp" />
 
         <TextView
-            android:layout_width="130dp"
+            android:layout_width="106dp"
             android:layout_height="32dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
-            android:id="@+id/textnombre" />
+            android:id="@+id/textnombre"
+            android:textSize="16dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="31dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
-            android:id="@+id/texthora" />
+            android:id="@+id/texthora"
+            android:textSize="16dp" />
     </LinearLayout>
 </LinearLayout>
