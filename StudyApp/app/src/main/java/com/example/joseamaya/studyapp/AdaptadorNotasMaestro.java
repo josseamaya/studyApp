@@ -32,7 +32,7 @@ public class AdaptadorNotasMaestro extends ArrayAdapter<JSONObject> {
 
         TextView nombre = (TextView) celda.findViewById(R.id.textCeldaComplejaAlumnosNombre);
         TextView codigo=(TextView) celda.findViewById(R.id.textCeldaComplejaAlumnosCodigo);
-        TextView asignatura=(TextView) celda.findViewById(R.id.textCeldaComplejaAlumnosAsignatura);
+        //TextView asignatura=(TextView) celda.findViewById(R.id.textCeldaComplejaAlumnosAsignatura);
         TextView codigoAsignatura=(TextView) celda.findViewById(R.id.textCeldaComplejaCodigoAsignatura);
 
 
@@ -42,7 +42,7 @@ public class AdaptadorNotasMaestro extends ArrayAdapter<JSONObject> {
 
             nombre.setText(elemento.getString("nombre"));
             codigo.setText(elemento.getString("cod_alumno"));
-            asignatura.setText(notasMaestro.arrayListNombresAsignatura.get(position));
+           // asignatura.setText(notasMaestro.arrayListNombresAsignatura.get(position));
             codigoAsignatura.setText(notasMaestro.arrayListCodigosAsignatura.get(position));
 
         } catch (JSONException e) {

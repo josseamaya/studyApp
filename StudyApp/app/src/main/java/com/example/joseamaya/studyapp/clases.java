@@ -9,9 +9,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -26,6 +32,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class clases extends AppCompatActivity {
     String IP = "http://studyaplication.esy.es";
@@ -51,8 +58,11 @@ public class clases extends AppCompatActivity {
             }
         });
 
+
+
         codigoMaestro=this.getIntent().getStringExtra("codigoMaestro2");
         nombreMaestro=this.getIntent().getStringExtra("nombreMaestro2");
+
 
         TextView tvCodigoMaestroClase = (TextView) findViewById(R.id.textCodigoMaestroClase);
         tvCodigoMaestroClase.setText(codigoMaestro);
@@ -186,6 +196,7 @@ public class clases extends AppCompatActivity {
             super.onProgressUpdate(values);
         }
     }
+
 
 }
 

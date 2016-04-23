@@ -10,10 +10,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,6 +34,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class IngresarNota extends AppCompatActivity {
     String IP = "http://studyaplication.esy.es";
@@ -69,6 +76,8 @@ public class IngresarNota extends AppCompatActivity {
 
         TextView tvNombreAsignatura = (TextView)findViewById(R.id.textIngresarNotasNombreAsignatura);
         tvNombreAsignatura.setText(this.getIntent().getStringExtra("nombreAsignatura"));
+
+        obtenerNombreAsignatura("http://studyaplication.esy.es/obtener_asignatura.php");
 
 
     }
@@ -194,6 +203,53 @@ public class IngresarNota extends AppCompatActivity {
             super.onProgressUpdate(values);
         }
     }
+
+    private void obtenerNombreAsignatura(String url) {
+        final Context context=this;
+        JsonObjectRequest jor=new JsonObjectRequest(
+                url,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+
+                            JSONArray asignaturas=response.getJSONArray("asignatura");
+
+                            for(int i=0;i<asignaturas.length();i++)
+                            {
+                                JSONObject asignatura = (JSONObject) asignaturas.get(i);
+                                String codigoAsignatura2 = asignatura.getString("cod_asignatura");
+                                String nombreAsignatura2 = asignatura.getString("nombre");
+                                if (codigoAsignatura2.equals(codigoAsignatura)){
+                                    TextView textView=(TextView)findViewById(R.id.textIngresarNotasNombreAsignatura);
+                                    textView.setText(nombreAsignatura2);
+                                }
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            int duration = Toast.LENGTH_SHORT;
+                            Toast toast = Toast.makeText(context, "error try2", duration);
+                            toast.show();
+
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        int duration = Toast.LENGTH_SHORT;
+                        Toast toast = Toast.makeText(context, "error de red por favor recargue 2", duration);
+                        toast.show();
+                    }
+                }
+        );
+        MySingleton.getInstance(context).addToRequestQueue(jor);
+    }
+
+
 
 
 }
