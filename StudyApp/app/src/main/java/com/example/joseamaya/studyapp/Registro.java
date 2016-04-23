@@ -71,14 +71,8 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        setTitle("Registro");
+
 
         //Enlace con los elementos
         nombre = (EditText) findViewById(R.id.editText);
@@ -90,7 +84,7 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
         estudiante = (RadioButton) findViewById(R.id.radioButton);
         maestro = (RadioButton) findViewById(R.id.radioButton2);
         padre = (RadioButton) findViewById(R.id.radioButton3);
-        tv_result = (TextView) findViewById(R.id.tv_result);
+
 
         //Listener de los botones
         nombre.setOnClickListener(this);

@@ -11,44 +11,49 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.joseamaya.studyapp.InicioSesion"
     tools:showIn="@layout/activity_inicio_sesion"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="1">
 
-    <LinearLayout
+    <FrameLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="249dp"
+        android:weightSum="1">
 
-        <TextView
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Iniciar Sesión"
-            android:id="@+id/inicioTextTitulo" />
-
-    </LinearLayout>
+            android:id="@+id/imagenLogin"
+            android:layout_gravity="center"
+            android:background="@drawable/login" />
+    </FrameLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RadioGroup
-            android:layout_width="241dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:layout_weight="0.61">
+            android:gravity="center"
+            android:layout_gravity="center_horizontal">
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Estudiante"
             android:id="@+id/inicioRadioEstudiante"
-            android:checked="true" />
+            android:checked="true"
+            android:layout_gravity="center_horizontal" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Maestro"
             android:id="@+id/inicioRadioMaestro"
-            android:checked="false" />
+            android:checked="false"
+            android:layout_gravity="center_horizontal" />
 
         <RadioButton
             android:layout_width="wrap_content"
@@ -83,7 +88,8 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_weight="0.19">
 
         <TextView
             android:layout_width="wrap_content"
@@ -97,7 +103,8 @@
             android:layout_width="230dp"
             android:layout_height="wrap_content"
             android:id="@+id/inicioTextoContrasena"
-            android:layout_weight="0.08" />
+            android:layout_weight="0.08"
+            android:inputType="textPassword" />
     </LinearLayout>
 
     <LinearLayout
@@ -106,18 +113,14 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Aceptar"
             android:id="@+id/inicioAceptar"
-            android:onClick="onClickInicioAceptar" />
+            android:onClick="onClickInicioAceptar"
+            android:backgroundTint="#3f51b5"
+            android:textColor="#ffffff" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cancelar"
-            android:id="@+id/inicioCancelar"
-            android:onClick="onClickInicioCancelar" />
     </LinearLayout>
 
 </LinearLayout>

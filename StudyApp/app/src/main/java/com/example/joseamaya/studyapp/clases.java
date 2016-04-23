@@ -39,6 +39,7 @@ public class clases extends AppCompatActivity {
     String INSERT_C = IP + "/insertar_asignatura.php";
     ObtenerWebService hiloconexion;
     Context context=null;
+    String devuelve = "";
 
     String codigoMaestro, nombreMaestro=null;
     @Override
@@ -97,7 +98,7 @@ public class clases extends AppCompatActivity {
 
             String cadena = params[0];
             URL url = null; // Url de donde queremos obtener información
-            String devuelve = "";
+
 
             if (params[1] == "1") {    // Ingresar maestros
 
@@ -149,10 +150,16 @@ public class clases extends AppCompatActivity {
 
                         String resultJSON = respuestaJSON.getString("estado");   // estado es el nombre del campo en el JSON
                         if (resultJSON == "1") {      // hay un Maestro que mostrar
+                            int duration = Toast.LENGTH_SHORT;
+                            Toast toast = Toast.makeText(context, "Asignatura Agregada", duration);
+                            toast.show();
                             devuelve = "Clase agregada";
 
 
                         } else if (resultJSON == "2") {
+                            int duration = Toast.LENGTH_SHORT;
+                            Toast toast = Toast.makeText(context, "Asignatura ya existe", duration);
+                            toast.show();
                             devuelve = "La clase no pude agregarse";
                         }
 
@@ -180,9 +187,6 @@ public class clases extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, "Asignatura Agregada Correctamente", duration);
-            toast.show();
             super.onPostExecute(s);
         }
 
