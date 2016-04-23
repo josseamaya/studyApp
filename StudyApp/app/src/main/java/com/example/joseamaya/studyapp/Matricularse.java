@@ -102,10 +102,16 @@ public class Matricularse extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         final Context context=this;
         if (v.getId() == R.id.buttonbus) {
-            hiloconexion = new ObtenerWebService();
-            String cadenallamada = GET_BY_ID + "?cod_maestro=" + buscarid.getText().toString();
-            hiloconexion.execute(cadenallamada,"1");   // Parámetros que recibe doInBackground
-            obtenerJson();
+            if(buscarid.getText().toString().isEmpty()){
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, "Ingrese el código del maestro", duration);
+                toast.show();
+            }else {
+                hiloconexion = new ObtenerWebService();
+                String cadenallamada = GET_BY_ID + "?cod_maestro=" + buscarid.getText().toString();
+                hiloconexion.execute(cadenallamada, "1");   // Parámetros que recibe doInBackground
+                obtenerJson();
+            }
 
         }else if(v.getId()==R.id.buttonmatric){
             /*insertar id
@@ -117,11 +123,12 @@ public class Matricularse extends AppCompatActivity implements View.OnClickListe
                 Toast toast = Toast.makeText(context, "Ingrese todos los datos", duration);
                 toast.show();
             }else{
-                hiloconexion = new ObtenerWebService();
+                /*hiloconexion = new ObtenerWebService();
                 hiloconexion.execute(INSERT_M, "2", buscarid.getText().toString(),codigoalumno , codigo_a.getText().toString());   // Parámetros que recibe doInBackground
                 int duration = Toast.LENGTH_SHORT;
                 Toast toast = Toast.makeText(context, "Matricula Ingresada", duration);
-                toast.show();
+                toast.show();*/
+                obtenerJson2();
             }
 
         }
@@ -305,14 +312,31 @@ public class Matricularse extends AppCompatActivity implements View.OnClickListe
                             JSONArray asig = response.getJSONArray("asignatura");
                             final ArrayList<JSONObject> dataSource = new ArrayList<JSONObject>();
                             JSONObject codmaestro=null;
+                            boolean verificador=false;
                             for (int i = 0; i < asig.length(); i++) {
                                 codmaestro = (JSONObject) asig.get(i);
                                 String codigo = codmaestro.getString("cod_maestro");
                                 if(codigo.equals(buscarid.getText().toString())){
                                     dataSource.add(asig.getJSONObject(i));
+                                    verificador=true;
+
+                                    break;
+                                }else{
+                                    verificador=false;
                                 }
 
                             }
+                            if (verificador==false){
+                                int duration = Toast.LENGTH_SHORT;
+                                Toast toast = Toast.makeText(context, "Maestro no registrado", duration);
+                                toast.show();
+                            }
+                            else {
+                                int duration = Toast.LENGTH_SHORT;
+                                Toast toast = Toast.makeText(context, "Maestro encontrado", duration);
+                                toast.show();
+                            }
+
                             final Celda adapter = new Celda(context, 0, dataSource);
                             ((ListView) findViewById(R.id.listasignatura)).setAdapter(adapter);
 
@@ -347,4 +371,59 @@ public class Matricularse extends AppCompatActivity implements View.OnClickListe
         MySingleton.getInstance(this).addToRequestQueue(jor);
     }
 
+    public void obtenerJson2(){
+        final Context context=this;
+        JsonObjectRequest jor= new JsonObjectRequest(
+                "http://studyaplication.esy.es/obtener_asignatura.php",
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Logger.getAnonymousLogger().log(Level.INFO, response.toString());
+
+                        try {
+                            JSONArray asig = response.getJSONArray("asignatura");
+                            JSONObject codmaestro=null;
+                            JSONObject codasig=null;
+                            boolean verificador=false;
+                            for (int i = 0; i < asig.length(); i++) {
+                                codmaestro = (JSONObject) asig.get(i);
+                                String codigo = codmaestro.getString("cod_maestro");
+                                codasig=(JSONObject) asig.get(i);
+                                String cod_asig=codasig.getString("cod_asignatura");
+                                if(codigo.equals(buscarid.getText().toString())&& cod_asig.equals(codigo_a.getText().toString())){
+                                    verificador=true;
+
+                                    break;
+                                }else{
+                                    verificador=false;
+                                }
+
+                            }
+                            if (verificador==false){
+                                int duration = Toast.LENGTH_SHORT;
+                                Toast toast = Toast.makeText(context, "Datos incorrectos", duration);
+                                toast.show();
+                            }
+                            else {
+                                hiloconexion = new ObtenerWebService();
+                                hiloconexion.execute(INSERT_M, "2", buscarid.getText().toString(),codigoalumno , codigo_a.getText().toString());   // Parámetros que recibe doInBackground
+                                int duration = Toast.LENGTH_SHORT;
+                                Toast toast = Toast.makeText(context, "Matricula Ingresada", duration);
+                                toast.show();
+                            }
+
+                        }catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //error en el response
+                    }
+                }
+        );
+        MySingleton.getInstance(this).addToRequestQueue(jor);
+    }
 }

@@ -79,10 +79,10 @@ public class Mostrar_notas extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         final Context context=this;
         if (v.getId() == R.id.buttonbus) {
-            hiloconexion = new ObtenerWebService();
+            /*hiloconexion = new ObtenerWebService();
             String cadenallamada = GET_BY_ID + "?cod_alumno=" + codigoA_ver_n;
             hiloconexion.execute(cadenallamada,"1");   // Parámetros que recibe doInBackground
-            obtenerJson();
+            obtenerJson();*/
 
         }
 
