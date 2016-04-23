@@ -39,7 +39,7 @@ public class Padres extends AppCompatActivity {
 
     public void Notas_padre(View v){
         Intent intento=new Intent(this, Notas_padre.class);
-      //  intento.putExtra("codigopadre2", this.getIntent().getStringExtra("codigopadre"));
+        intento.putExtra("codigopadre3", this.getIntent().getStringExtra("codigopadre"));
         startActivity(intento);
     }
 
